@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+dist
+.env
+.env.local
+.DS_Store
+*.log
+.vscode
+.idea
+
+# Local data store for /api/orders (file-based persistence)
+data/

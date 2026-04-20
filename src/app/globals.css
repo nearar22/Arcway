@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  /* Warm neutral grays — not blue-tinted */
+  --surface-0: #0a0a0a;
+  --surface-1: #131313;
+  --surface-2: #1a1a1a;
+  --surface-3: #232323;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-subtle: rgba(255, 255, 255, 0.035);
+  --border-strong: rgba(255, 255, 255, 0.11);
+  --text-primary: #fafafa;
+  --text-secondary: rgba(255, 255, 255, 0.62);
+  --text-tertiary: rgba(255, 255, 255, 0.42);
+  --text-faint: rgba(255, 255, 255, 0.24);
+  --accent: #a78bfa;
+  --accent-strong: #8b5cf6;
+  --accent-glow: rgba(139, 92, 246, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--surface-0);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-weight: 400;
+  letter-spacing: -0.011em;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  position: relative;
+  background:
+    radial-gradient(ellipse 1100px 700px at 88% -8%, rgba(139, 92, 246, 0.12), transparent 55%),
+    radial-gradient(ellipse 700px 500px at -5% 105%, rgba(167, 139, 250, 0.07), transparent 60%),
+    var(--surface-0);
+}
+
+/* Subtle grain overlay — makes the dark feel like film, not flat hex */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+header,
+main,
+footer {
+  position: relative;
+  z-index: 2;
+}
+
+::selection {
+  background: var(--accent-glow);
+  color: #ffffff;
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface-1) 0%,
+    var(--surface-2) 40%,
+    var(--surface-1) 80%
+  );
+  background-size: 200% 100%;
+  border-radius: 6px;
+}
+
+/* Focus ring for keyboard navigation */
+:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Magnetic-feel hover lift — used on primary buttons / links */
+.lift {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 220ms ease,
+              border-color 220ms ease,
+              background-color 220ms ease,
+              color 220ms ease;
+}
+.lift:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.lift:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Hairline rule — 1px line that respects pixel grid */
+.hairline {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+}
+
+/* Reveal-line wrapper used by hero animations */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+/* Hide scrollbar for horizontal scroll areas */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Animation stagger delays */
+.delay-1 { animation-delay: 60ms; }
+.delay-2 { animation-delay: 120ms; }
+.delay-3 { animation-delay: 180ms; }
+.delay-4 { animation-delay: 240ms; }
+.delay-5 { animation-delay: 300ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
