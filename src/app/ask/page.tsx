@@ -137,12 +137,15 @@ export default function AskPage() {
     } catch {}
   }, [history]);
 
-  // --- Poll queue ---
+  // --- Poll queue (scoped to connected wallet) ---
   useEffect(() => {
     let alive = true;
     const tick = async () => {
       try {
-        const res = await fetch("/api/queue", { cache: "no-store" });
+        const url = address
+          ? `/api/queue?payer=${address}`
+          : "/api/queue";
+        const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
         if (alive) setQueue(data);
       } catch {}
@@ -153,7 +156,7 @@ export default function AskPage() {
       alive = false;
       clearInterval(id);
     };
-  }, []);
+  }, [address]);
 
   // --- Submit query (x402 two-step flow) ---
   async function submitQuery() {
