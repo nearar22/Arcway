@@ -29,6 +29,8 @@ const erc20Abi = parseAbi([
   "function transferFrom(address from, address to, uint256 value) returns (bool)",
 ]);
 
+export const dynamic = "force-dynamic";
+
 function mockTxHash(): `0x${string}` {
   const hex = Array.from({ length: 64 }, () =>
     Math.floor(Math.random() * 16).toString(16)

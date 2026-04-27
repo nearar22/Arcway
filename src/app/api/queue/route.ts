@@ -4,6 +4,8 @@
 import { NextResponse } from "next/server";
 import { snapshot } from "@/lib/intentStore";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const s = await snapshot();
   return NextResponse.json({

@@ -125,17 +125,24 @@ export async function addIntent(
 
   const db = firestore();
   if (db) {
-    await db.collection(PENDING).doc(queued.id).set(toDoc(queued));
-    const statsRef = db.doc(STATS_DOC);
-    await db.runTransaction(async (tx) => {
-      const snap = await tx.get(statsRef);
-      const cur = snap.exists ? snap.data()! : { totalQueries: 0, totalVolume: "0" };
-      tx.set(statsRef, {
-        totalQueries: (cur.totalQueries ?? 0) + 1,
-        totalVolume: (BigInt(cur.totalVolume ?? "0") + i.intent.amount).toString(),
+    try {
+      await db.collection(PENDING).doc(queued.id).set(toDoc(queued));
+      const statsRef = db.doc(STATS_DOC);
+      await db.runTransaction(async (tx) => {
+        const snap = await tx.get(statsRef);
+        const cur = snap.exists ? snap.data()! : { totalQueries: 0, totalVolume: "0" };
+        tx.set(statsRef, {
+          totalQueries: (cur.totalQueries ?? 0) + 1,
+          totalVolume: (BigInt(cur.totalVolume ?? "0") + i.intent.amount).toString(),
+        });
       });
-    });
+      console.log("[intentStore] addIntent OK", queued.id);
+    } catch (err) {
+      console.error("[intentStore] addIntent FAILED:", err);
+      throw err;
+    }
   } else {
+    console.warn("[intentStore] no Firestore — using in-memory fallback");
     const s = memStore();
     s.pending.push(queued);
     s.totalQueries += 1;

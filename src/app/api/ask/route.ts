@@ -24,6 +24,8 @@ import {
 const TREASURY = (process.env.NEXT_PUBLIC_TREASURY_ADDRESS ?? "") as `0x${string}`;
 const MIN_AMOUNT = parseUnits("0.001", 6);
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
   const { prompt } = body as { prompt?: string };
