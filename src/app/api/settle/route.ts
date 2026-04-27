@@ -37,7 +37,7 @@ function mockTxHash(): `0x${string}` {
 }
 
 export async function POST() {
-  const taken = drainPending();
+  const taken = await drainPending();
   if (taken.length === 0) {
     return NextResponse.json({
       settled: null,
@@ -45,9 +45,9 @@ export async function POST() {
     });
   }
 
-  const totalAmount = taken.reduce((s, q) => s + q.intent.amount, 0n);
+  const totalAmount = taken.reduce((s: bigint, q: typeof taken[0]) => s + q.intent.amount, 0n);
   const batchId = `b_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
-  const intentIds = taken.map((q) => q.id);
+  const intentIds = taken.map((q: typeof taken[0]) => q.id);
 
   // --- Demo mode: no key or invalid key → simulated settlement ---
   if (!BATCHER_KEY || !/^0x[0-9a-fA-F]{64}$/.test(BATCHER_KEY)) {
@@ -59,7 +59,7 @@ export async function POST() {
       settledAt: Date.now(),
       status: "confirmed",
     };
-    recordSettlement(batch);
+    await recordSettlement(batch);
     return NextResponse.json({
       settled: { ...batch, totalAmount: batch.totalAmount.toString() },
       demo: true,
@@ -108,7 +108,7 @@ export async function POST() {
       settledAt: Date.now(),
       status: "confirmed",
     };
-    recordSettlement(batch);
+    await recordSettlement(batch);
 
     return NextResponse.json({
       settled: { ...batch, totalAmount: batch.totalAmount.toString() },

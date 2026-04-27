@@ -124,7 +124,7 @@ export async function POST(req: NextRequest) {
 
   // Queue intent for batch settlement
   const promptHash = keccak256(toBytes(prompt.trim())) as `0x${string}`;
-  const queued = addIntent({
+  const queued = await addIntent({
     intent,
     signature: payment.signature,
     promptHash,

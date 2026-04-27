@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { snapshot } from "@/lib/intentStore";
 
 export async function GET() {
-  const s = snapshot();
+  const s = await snapshot();
   return NextResponse.json({
     pending: s.pending.map((p) => ({
       id: p.id,

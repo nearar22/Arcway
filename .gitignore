@@ -11,3 +11,7 @@ dist
 
 # Local data store for /api/orders (file-based persistence)
 data/
+
+# Firebase service account keys (never commit secrets)
+*service-account*.json
+*firebase-adminsdk*.json
