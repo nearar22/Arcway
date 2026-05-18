@@ -18,6 +18,36 @@ const config: Config = {
           800: "#5b21b6",
           900: "#4c1d95",
         },
+        // Semantic tokens (use as text-primary, bg-success, ring-warning/20, etc.)
+        background: "hsl(var(--background) / <alpha-value>)",
+        foreground: "hsl(var(--foreground) / <alpha-value>)",
+        surface: {
+          DEFAULT: "hsl(var(--surface) / <alpha-value>)",
+          elevated: "hsl(var(--surface-elevated) / <alpha-value>)",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+          foreground: "hsl(var(--primary-foreground) / <alpha-value>)",
+          glow: "hsl(var(--primary-glow) / <alpha-value>)",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
+          foreground: "hsl(var(--secondary-foreground) / <alpha-value>)",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted) / <alpha-value>)",
+          foreground: "hsl(var(--muted-foreground) / <alpha-value>)",
+        },
+        success: "hsl(var(--success) / <alpha-value>)",
+        warning: "hsl(var(--warning) / <alpha-value>)",
+        destructive: "hsl(var(--destructive) / <alpha-value>)",
+      },
+      borderColor: {
+        DEFAULT: "rgba(255, 255, 255, 0.06)",
+        strong: "rgba(255, 255, 255, 0.12)",
+      },
+      backgroundImage: {
+        "gradient-violet": "linear-gradient(135deg, hsl(258 90% 68%), hsl(285 88% 64%))",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],

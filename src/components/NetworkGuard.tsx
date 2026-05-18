@@ -53,23 +53,23 @@ export default function NetworkGuard() {
   }
 
   return (
-    <div className="rounded-lg bg-amber-500/[0.04] border border-amber-500/10 px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3">
+    <div className="rounded-xl bg-warning/5 border border-warning/20 px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3">
       <div className="flex items-center gap-2.5 flex-1">
-        <AlertTriangle className="h-4 w-4 text-amber-400/60 shrink-0" />
+        <AlertTriangle className="h-4 w-4 text-warning shrink-0" />
         <div>
-          <p className="text-[13px] font-medium text-amber-300/70">Wrong network</p>
-          <p className="text-[11px] text-amber-400/40 mt-0.5">
-            Switch to Arc Testnet to continue
+          <p className="text-[13px] font-medium text-warning">Wrong network</p>
+          <p className="text-[11px] text-warning/70 mt-0.5">
+            Switch to Arc Testnet (chain 5042002) to continue
           </p>
         </div>
       </div>
 
       <div className="flex items-center gap-3 shrink-0">
-        {error && <span className="text-[11px] text-red-400/60 max-w-[180px] truncate">{error}</span>}
+        {error && <span className="text-[11px] text-destructive/80 max-w-[180px] truncate">{error}</span>}
         <button
           onClick={addAndSwitch}
           disabled={loading}
-          className="flex items-center gap-1.5 rounded-md bg-amber-500/10 hover:bg-amber-500/15 border border-amber-500/15 px-3 py-1.5 text-[12px] font-medium text-amber-300/70 transition-all ease-out-quart disabled:opacity-40"
+          className="flex items-center gap-1.5 rounded-full bg-warning/15 hover:bg-warning/25 border border-warning/30 px-3 py-1.5 text-[12px] font-medium text-warning transition-all ease-out-quart disabled:opacity-40 lift"
         >
           {loading
             ? <Loader2 className="h-3 w-3 animate-spin" />

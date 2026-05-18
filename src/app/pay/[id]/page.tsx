@@ -136,7 +136,7 @@ export default function PayPage() {
       )}
 
       <p className="text-center text-[11px] text-[var(--text-faint)] pt-4">
-        <Link href="/" className="hover:text-white/40 transition-colors">Arc Pay</Link>
+        <Link href="/" className="hover:text-white/40 transition-colors">Arcway</Link>
         {" · "}
         <a href="https://docs.arc.network" target="_blank" rel="noreferrer" className="hover:text-white/40 transition-colors">Docs</a>
       </p>

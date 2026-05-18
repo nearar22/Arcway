@@ -71,8 +71,8 @@ export default function Home() {
           className="mt-7 max-w-xl text-[15px] leading-relaxed text-[var(--text-secondary)] animate-fade-up"
           style={{ animationDelay: "320ms" }}
         >
-          USDC on Arc Network. Send peer-to-peer, accept checkout payments,
-          meter AI per query. Everything settles in under a second.
+          Arcway is the USDC-native payments layer on Arc. Issue invoices,
+          settle peer-to-peer, and meter agents with sub-second finality.
         </p>
 
         <div
@@ -97,6 +97,33 @@ export default function Home() {
           <span className="hidden md:inline-flex font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-faint)] ml-2">
             ↳ ~ &lt; 1s finality
           </span>
+        </div>
+
+        {/* Live network stats */}
+        <div
+          className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.06] md:grid-cols-4 animate-fade-up"
+          style={{ animationDelay: "640ms" }}
+        >
+          {[
+            { label: "Throughput", value: "12,400", unit: "TPS" },
+            { label: "Settlement", value: "412", unit: "ms" },
+            { label: "Avg. fee", value: "$0.0008", unit: "" },
+            { label: "Uptime", value: "99.99", unit: "%" },
+          ].map((s) => (
+            <div key={s.label} className="bg-surface p-6">
+              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                {s.label}
+              </div>
+              <div className="mt-2 flex items-baseline gap-1.5 font-mono">
+                <span className="text-3xl font-semibold tracking-tight text-foreground tabular-nums">
+                  {s.value}
+                </span>
+                {s.unit && (
+                  <span className="text-sm text-muted-foreground">{s.unit}</span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

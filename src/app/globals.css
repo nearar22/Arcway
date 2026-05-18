@@ -19,6 +19,24 @@
   --accent: #a78bfa;
   --accent-strong: #8b5cf6;
   --accent-glow: rgba(139, 92, 246, 0.35);
+
+  /* ── Semantic design tokens (HSL channels for tailwind opacity modifiers) ── */
+  --background: 0 0% 4%;
+  --foreground: 0 0% 98%;
+  --surface: 0 0% 8%;
+  --surface-elevated: 0 0% 11%;
+  --primary: 258 90% 68%;
+  --primary-foreground: 0 0% 100%;
+  --primary-glow: 263 92% 72%;
+  --secondary: 0 0% 13%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 62%;
+  --success: 158 64% 52%;
+  --warning: 38 92% 60%;
+  --destructive: 0 84% 60%;
+  --border-token: 0 0% 100%;
+  --ring: 258 90% 68%;
 }
 
 * {
@@ -127,6 +145,30 @@ footer {
 .delay-3 { animation-delay: 180ms; }
 .delay-4 { animation-delay: 240ms; }
 .delay-5 { animation-delay: 300ms; }
+
+/* ── Mesh background gradient (used on hero / page wrappers) ── */
+.bg-mesh {
+  background-image:
+    radial-gradient(at 20% 20%, rgba(124, 92, 255, 0.18) 0px, transparent 50%),
+    radial-gradient(at 80% 10%, rgba(155, 81, 255, 0.14) 0px, transparent 50%),
+    radial-gradient(at 70% 80%, rgba(99, 91, 255, 0.14) 0px, transparent 50%);
+}
+
+@keyframes meshDrift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2%, -2%, 0) scale(1.05); }
+}
+.animate-mesh { animation: meshDrift 18s ease-in-out infinite; }
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.animate-pulse-glow { animation: pulseGlow 2.4s ease-in-out infinite; }
+
+.glow-violet {
+  box-shadow: 0 0 80px -10px rgba(124, 92, 255, 0.5);
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

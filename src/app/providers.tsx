@@ -12,7 +12,7 @@ const projectId =
   process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "arc-pay-demo-project";
 
 const wagmiConfig = getDefaultConfig({
-  appName: "Arc Pay",
+  appName: "Arcway",
   projectId,
   chains: [arcTestnet],
   transports: {

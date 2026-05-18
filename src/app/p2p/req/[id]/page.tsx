@@ -216,7 +216,7 @@ export default function RequestPayPage() {
         </Link>
         {" · "}
         <Link href="/" className="hover:text-white/40 transition-colors">
-          Arc Pay
+          Arcway
         </Link>
       </p>
     </div>
